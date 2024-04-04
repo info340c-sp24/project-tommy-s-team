@@ -1,1 +1,21 @@
+.SectionOneHeader {
+    color: red;
+}
 
+.SectionOneSubHeader {
+    color:green;
+}
+
+* {
+    font-family: "Helvetica", "Arial", "Verdana", sans-serif
+}
+
+p, li {
+    padding-left: 4em;
+    padding-right: 4em;
+}
+
+main {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
