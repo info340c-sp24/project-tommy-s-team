@@ -19,3 +19,15 @@ main {
     margin-top: 2em;
     margin-bottom: 2em;
 }
+
+.b {
+    color:rgb(174, 211, 27);    
+}
+
+.c {
+    color:blueviolet;
+}
+
+img {
+    max-height: 400px;
+}
