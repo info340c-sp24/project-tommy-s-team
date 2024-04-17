@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -6,20 +7,21 @@
     <link rel="stylesheet" href="css/project.css">
     <title>Todo list</title>
 </head>
-
 <body>
-    <form action="" method="get" class="login">
-        <div class="UsernameInput">
-            <label for="SearchInput"> Username: </label>
-            <input type="text" required/>
+    <div class = "Login_box">
+    <img src="img/user2.jpeg" alt ="User icon" class ="icon">
+    <form action="submit-login.php" method="post" class="login">
+        <div class="username-input">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required/>
         </div>
 
-        <div class="PasswordInput">
-            <label for="SearchInput"> Passward: </label>
-            <input type="password" required/>
+        <div class="password-input">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required/>
         </div>
+        <button type="submit" class="login-button">Login</button>
     </form>
-    <button onclick="window.location.href='OurTodoListLink';" class="LoginButton" type="button">
-        Login
-    </button>
+    </div>
 </body>
+</html>
