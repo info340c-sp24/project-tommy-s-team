@@ -34,12 +34,18 @@ h2, h5 {
     padding-bottom: 1rem;
 }
 
+menu-small:hover{
+    color: blue;
+}
+
 .dropdown-menu {
     display: none;
 }
 
-.dropdown:hover .dropdown-menu {
-    display: block;
+.dropdown:hover {
+    .dropdown-menu {
+        display: block;
+    }
 }
 
 /* Todo List */
