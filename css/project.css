@@ -1,4 +1,83 @@
-body {
+/* login page */
+.login-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.Login_box {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px; 
+    border: 1px solid #ddd; 
+}
+
+.icon {
+    width: 100px; 
+    height: auto;
+    margin-bottom: 20px; 
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+}
+
+.username-input,
+.password-input {
+    margin-bottom: 20px;
+}
+
+.username-input label, password-input label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #495057; 
+}
+
+.username-input input[type="text"],
+.password-input input[type="password"] {
+    width: calc(100% - 20px); 
+    padding: 10px 10px;
+    border: 2px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px; 
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #111116; 
+    outline: none;
+}
+
+button.login-button {
+    padding: 12px 10px;
+    background-color: #5C67F2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; 
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+button.login-button:hover,
+button.login-button:focus {
+    background-color: #b5b8e7;
+    transform: translateY(-2px); 
+}
+
+/* main page */
+.main-page-body {
     margin: .5rem;
 }
 
@@ -37,10 +116,6 @@ header h1 {
     flex-basis: auto;
     text-align: center;
     padding-bottom: 1rem;
-}
-
-menu-small:hover{
-    color: blue;
 }
 
 .dropdown-menu {
@@ -137,10 +212,6 @@ footer img {
     padding: .2rem;
 }
 
-/* media */
-@media (max-width: 598px) {
-
-}
 
 @media (min-width: 768px) {
     .detail-btn {
@@ -197,12 +268,4 @@ footer img {
         display: none;
     }
     
-}
-
-@media (min-width: 992px) {
-    
-}
-
-@media (min-width: 1200px) {
-
 }
