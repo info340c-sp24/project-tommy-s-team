@@ -17,16 +17,15 @@
 <body>
     <header>
         <h1>Todo List</h1>
-        <a href="#" class="username-link"><p>Username</p></a>
+        <nav><a href="#" class="username-link"><img src="img/user.jpg" alt="an user icon"></a></nav>
     </header>
     
-    <main> 
+    <main>
         <div class="flex-container">
             <form action="http://127.0.0.1:8080/" method="get" class="SearchBarForm">
-                <div class="SearchBar">
-                    <input type="text"/>
-                    <button id="search-btn" class="search-btn">Search</button>
-                </div>
+                <label for="search-text"></label>
+                <input type="text"/>
+                <button id="search-btn" class="search-btn">Search</button>
             </form>
 
             <tr><td><button class="Categorization" type="button">Categorization</button></td></tr>
@@ -133,10 +132,7 @@
     </main>
 
     <footer>
-        <p>&copy; Info 340 Project</p>
+        <p>&copy; Info 340 Project <img src="img/todo.gif" alt="a gif showing a todo list"></p>
     </footer>
-
-    
-    
 </body>
 </html>

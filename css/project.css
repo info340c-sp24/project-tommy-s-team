@@ -8,6 +8,10 @@ header a {
     padding-right: 1rem;
 }
 
+header img{
+    max-width: 40px;
+}
+
 header h1 {
     text-align: center;
 }
@@ -48,6 +52,8 @@ menu-small:hover{
         display: block;
     }
 }
+
+
 
 /* Todo List */
 .todo-list, .todo-list-over-due{
@@ -103,11 +109,15 @@ menu-small:hover{
 }
 
 /* footer */
-footer {
+footer p {
     max-width: 780px;
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;
+}
+
+footer img {
+    max-width: 70px;
 }
 
 /* Add Task */
