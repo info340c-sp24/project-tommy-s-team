@@ -12,8 +12,9 @@ header h1 {
     text-align: center;
 }
 
-h2, h5 {
+.title {
     text-align: center;
+    font-size: 1.2rem;
 }
 
 .flex-container {
@@ -63,6 +64,14 @@ menu-small:hover{
 
 }
 
+.SearchBarForm {
+    display: none;
+}
+
+.Categorization {
+    display: none;
+}
+
 .AddForm {
     text-align: left;
     margin-top: 1rem;
@@ -93,6 +102,31 @@ menu-small:hover{
     padding-left: 1rem;
 }
 
+/* footer */
+footer {
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
+
+/* Add Task */
+.add-box {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 11rem; 
+    border: 1px solid #ddd; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15rem;
+}
+ 
+.add-box div {
+    padding: .2rem;
+}
+
 /* media */
 @media (max-width: 598px) {
 
@@ -107,23 +141,52 @@ menu-small:hover{
         display: block;
     }
 
+    .SearchBarForm {
+        display: block;
+        margin: auto;
+        margin-bottom: 1rem;
+    }
+
     .menu {
         display: block;
+    }
+
+    .Categorization {
+        display: block;
+        margin: auto;
+        margin-bottom: 1rem;
     }
 
     .menu table{
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 1rem;
+        border: 1px solid #ddd; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 10rem; 
+        background-color: lightgray;
+    }
+    
+    .menu table td {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: .5rem;
     }
 
-    .menu td {
-        text-align: center;
+    .menu .dropdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sort-check-box{ 
+        text-align: left;
     }
 
     .menu-small {
         display: none;
     }
+    
 }
 
 @media (min-width: 992px) {
@@ -133,4 +196,3 @@ menu-small:hover{
 @media (min-width: 1200px) {
 
 }
-
