@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jimmy and Tommy">
+    <meta name="description" content="Todo list app project static">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="icon" type="jpeg" href="img/group.jpeg">
+    <title>Group Tasks</title>
+    <link rel="stylesheet" href="css/project.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const groupBtn = document.getElementById('groupBtn');
+            const groupNameInput = document.getElementById('groupName');
+            const groupsContainer = document.getElementById('groupsContainer');
+
+            function addGroup(name, tasks) {
+                const groupDiv = document.createElement('div');
+                groupDiv.classList.add('save-group');
+                groupDiv.textContent = 'Group: ' + name + ' - ' + tasks.join(', ');
+                groupsContainer.appendChild(groupDiv);
+            }
+
+            groupBtn.addEventListener('click', function() {
+                let selectedTasks = [];
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        let taskDetails = checkbox.closest('tr').querySelectorAll('td')[1].textContent;
+                        selectedTasks.push(taskDetails);
+                    }
+                });
+                if (selectedTasks.length > 0) {
+                    let groupName = groupNameInput.value.trim();
+                    groupName = groupName ? groupName : 'Unnamed Group';
+                    addGroup(groupName, selectedTasks);
+                    groupNameInput.value = '';
+                } else {
+                    alert('Please select at least one task.');
+                }
+            });
+        });
+    </script>
+</head>
+<body class="sort-body gt-page">
+    <header>
+        <h1>Please select the task(s) you want to add</h1>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th>Check</th>
+                <th>Task Name</th>
+                <th>Task Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" name="task1" id="task1"></td>
+                <td>Task 1</td>
+                <td>Task 1</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="task2" id="task2"></td>
+                <td>Task 2</td>
+                <td>Task 2</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="task3" id="task3"></td>
+                <td>Task 3</td>
+                <td>Task 3</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="task4" id="task4"></td>
+                <td>Task 4</td>
+                <td>Task 4</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <div class="in">
+        <input type="textIn" id="groupName" placeholder="Enter group name" />
+        <button id="groupBtn">Group Selected Tasks</button>
+    </div>
+    <div id="groupsContainer"></div>
+    <a href="#" class="b">BACK</a>
+</body>
+</html>
