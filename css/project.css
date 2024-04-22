@@ -298,7 +298,7 @@ footer img {
     background-color: #fff;
 }
 
-input[type="checkbox"] {
+.grouping-table input[type="checkbox"] {
     margin-left: 5px;
 }
 
