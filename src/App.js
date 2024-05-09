@@ -3,13 +3,14 @@ import SearchBar from './SearchBar'
 import Sorting from './Sorting'
 import TodoLate from './TodoLate'
 import Todo from './Todo'
+import Add from './Add'
 
 export default function App() {
   return (
       <div>
           <header>
             <h1>Todo List</h1>
-            <nav><a href="#" class="username-link"><img src="./img/user.jpg" alt="an user icon" /></a></nav>
+            <nav><a href="#" class="username-link"><img src={require('./img/user.jpg')} alt="an user icon" /></a></nav>
           </header>
 
           <div class="flex-container">
@@ -24,8 +25,14 @@ export default function App() {
           </div>
 
           <footer>
-            <p>&copy; Info 340 Project <img src="img/todo.gif" alt="a gif showing a todo list" /></p>
+            <p>&copy; Info 340 Project <img src={require('./img/todo.gif')} alt="a gif showing a todo list" /></p>
           </footer>
       </div>
+  )
+}
+
+export function AddWidget() {
+  return (
+    <Add />
   )
 }

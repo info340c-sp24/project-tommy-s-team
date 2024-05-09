@@ -119,7 +119,7 @@ header h1 {
     padding-bottom: 1rem;
 }
 
-.dropdown-menu {
+/* .dropdown-menu {
     display: none;
 }
 
@@ -127,7 +127,7 @@ header h1 {
     .dropdown-menu {
         display: block;
     }
-}
+} */
 
 
 
@@ -150,7 +150,7 @@ header h1 {
     display: none;
 }
 
-.Categorization {
+#Categorization {
     display: none;
 }
 
@@ -233,7 +233,7 @@ footer img {
         display: block;
     }
 
-    .Categorization {
+    #Categorization {
         display: block;
         margin: auto;
         margin-bottom: 1rem;
@@ -245,7 +245,7 @@ footer img {
         margin-bottom: 1rem;
         border: 1px solid #ddd; 
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 10rem; 
+        width: 11rem; 
         background-color: lightgray;
     }
     

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Sorting_Dropdown from './Sorting_Dropdown'
 export default function sorting() {
     return (
         <div class="menu"> 
@@ -24,27 +24,7 @@ export default function sorting() {
                                     <label for="sort-check-box" class="task-detail">Name</label>
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="dropbtn">
-                                            Categories
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <input type="checkbox" id="cat-check-box" name="cat-check-box" />
-                                            <label for="taskInput">Category 1</label>
-                                            <br />
-                                            <input type="checkbox" id="cat-check-box" name="cat-check-box" />
-                                            <label for="taskInput">Category 2</label>
-                                            <br />
-                                            <input type="checkbox" id="cat-check-box" name="cat-check-box" />
-                                            <label for="taskInput">Category 3</label>
-                                            <br />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                <Sorting_Dropdown />
                         </div>
                     </tbody>
                 </table>
