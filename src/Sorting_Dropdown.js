@@ -1,3 +1,4 @@
+'use strict';
 import React, {useState} from 'react'
 
 export default function Sorting_Dropdown() {
@@ -10,20 +11,20 @@ export default function Sorting_Dropdown() {
         }
     }
     return (
-        <div class="dropdown">
-            <button class="dropbtn" onClick={clickDropdown}>
+        <div className="dropdown">
+            <button className="dropbtn" onClick={clickDropdown}>
                 Categories
             </button>
             {show === true && (
                 <div>
                     <input type="checkbox" id="cat-check-box" name="cat-check-box" />
-                    <label for="taskInput">Category 1</label>
+                    <label htmlFor="taskInput">Category 1</label>
                     <br />
                     <input type="checkbox" id="cat-check-box" name="cat-check-box" />
-                    <label for="taskInput">Category 2</label>
+                    <label htmlFor="taskInput">Category 2</label>
                     <br />
                     <input type="checkbox" id="cat-check-box" name="cat-check-box" />
-                    <label for="taskInput">Category 3</label>
+                    <label htmlFor="taskInput">Category 3</label>
                     <br />
                 </div>
             )}

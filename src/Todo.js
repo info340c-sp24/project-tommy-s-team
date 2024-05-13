@@ -1,25 +1,88 @@
-import React from 'react'
+'use strict';
+import React, {useState} from 'react'
+// import * as ap from './Add_page';
 
 export default function Todo() {
-    return (
-        <div class="todo-list">
-                <p class="title"><b>Upcoming Tasks</b></p>
-                <div class="task">
-                    <ol id="todo">
-                        <li><input type="checkbox" id="task-check-box" name="task-check-box"/>
-                        <label for="taskInput" class="task-detail">Info 340 Reading</label><strong class="date">04-19</strong><button class="detail-btn">Detail</button><button class="delete-btn">Delete</button></li>
+    const [TaskList, setTaskList] = useState([]);
+    function AddTask_btn() {
+        const [popup, setPopup] = useState(false);
+        const handleClick = () => {
+            if (popup) {
+                setPopup(false);
+            } else {
+                setPopup(true);
+            }
+        }
 
-                        <li><input type="checkbox" id="task-check-box" name="task-check-box"/>
-                        <label for="taskInput" class="task-detail">Info 340 Problem Set</label><strong class="date">04-20</strong><button class="detail-btn">Detail</button><button class="delete-btn">Delete</button></li>
-                        
-                        <li><input type="checkbox" id="task-check-box" name="task-check-box"/>
-                        <label for="taskInput" class="task-detail">Info 340 Project and Group Meetting</label><strong class="date">04-20</strong><button class="detail-btn">Detail</button><button class="delete-btn">Delete</button></li>
-                        
-                        <li><input type="checkbox" id="task-check-box" name="task-check-box"/>
-                            <label for="taskInput" class="task-detail">This is a very long long long long long long long long task for testing</label><strong class="date">04-20</strong><button class="detail-btn">Detail</button><button class="delete-btn">Delete</button></li>
-                    </ol>
+        return (
+            <div>
+                <button onClick={handleClick} style={{ fontSize: '14px' }} id="add-btn"><i className='fas fa-plus'></i> Add Task</button>
+                {popup && <div> <Add_page /> </div>}
+            </div>
+        );
+    }
+
+    function GetIncompletedTask(TaskList) {
+        return TaskList.filter((task) => {
+            return task.completed == false;
+        });  
+    }
+    function Add_page() {
+        const [TaskInput, setTaskInput] = useState('');
+        const [DescInput, setDesc] = useState('');
+        const [DueDateInput, SetDueDateInput] = useState('');
+        
+        function handleAdd() {
+            const newTask = TaskList.concat({TaskID: TaskList.length + 1, TaskName: TaskInput, DueDate: DueDateInput, DescText: DescInput, completed: false});
+            setTaskList(GetIncompletedTask(newTask));
+        }
+        return (
+            <div className="add-box">
+                <input type="text" placeholder="Task name" className='name-bar' onChange={(event) => setTaskInput(event.target.value)} value={TaskInput}/>
+                <input type="text" placeholder="Due Date" className='due-date-bar' value={DueDateInput} onChange={(event) => SetDueDateInput(event.target.value)}/>
+                <textarea className="description-bar" type="text" placeholder="Description" rows="5" cols="20" value={DescInput} onChange={(event) => setDesc(event.target.value)}></textarea>     
+                <div className="priority">
+                    <label htmlFor="priority-select"></label>
+                    <select name="priority-level" id="pet-select">
+                    <option value="">Choose a priority level</option>
+                    <option value="l1">Level 1</option>
+                    <option value="l2">Level 2</option>
+                    <option value="l3">Level 3</option>
+                    </select>
                 </div>
-                <form action="https://info340c-sp24.github.io/project-tommy-s-team/add.html" method="get" class="AddForm"><button style={{ fontSize: '14px' }} id="add-btn"><i class='fas fa-plus'></i> Add Task</button></form>
+    
+                <button onClick={handleAdd} id="add-btn" className="add-btn">Add</button>
+            </div>
+        );
+    } 
+    
+    console.log(TaskList);
+    
+    // function handleCheck(taskid) {
+    //     if (task.id == taskid) {
+    //         task.completed = true;
+    //         setTaskList(GetIncompletedTask(TaskList));
+    //     }
+    // }
+
+    return (
+        <div className="todo-list">
+            <p className="title"><b>Upcoming Tasks</b></p>
+            <ol id="todo">
+                {TaskList.map((task) => (
+                    <li key={task.TaskID}>
+                        <input type="checkbox" className={`task-check-box ${task.TaskID}`} name="task-check-box" 
+                        onClick={() => {
+                            task.completed = true;
+                            setTaskList(GetIncompletedTask(TaskList));
+                        }}
+                        />
+                        <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label><strong className="date">{task.DueDate}</strong> <button className="detail-btn"> Detail </button> <button className="delete-btn">Delete</button>
+                    </li>
+                ))}   
+            </ol>
+
+            <AddTask_btn />
         </div>
-    )
+    );
 }
