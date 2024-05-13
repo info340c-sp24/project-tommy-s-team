@@ -238,7 +238,7 @@ footer img {
         margin-bottom: 1rem;
     }
 
-    .menu table{
+    .sort-box{
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 1rem;
@@ -248,7 +248,7 @@ footer img {
         background-color: lightgray;
     }
     
-    .menu table td {
+    .menu input {
         padding-left: 1rem;
         padding-right: 1rem;
         padding-bottom: .5rem;
