@@ -1,15 +1,36 @@
 'use strict';
-import React from 'react'
+import React, {useState} from 'react'
 
-function markComplete(task) {
-    task.completed = true;
-}
+export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
+    const [TaskInput, setTaskInput] = useState('');
+    const [DescInput, setDesc] = useState('');
+    const [DueDateInput, SetDueDateInput] = useState('');
+    const [Priority, SetPriority] = useState(0);
+    
+    function handleAdd() {
+        const newTask = taskList.concat({TaskID: taskList.length + 1, TaskName: TaskInput, DueDate: DueDateInput, Priority: Priority, DescText: DescInput, completed: false});
+        setTaskList(GetIncompletedTask(newTask));
+        setTaskInput('');
+        setDesc('');
+        SetDueDateInput('');
+        SetPriority('');
+    }
+    return (
+        <div className="add-box">
+            <input type="text" placeholder="Task name" className='name-bar' onChange={(event) => setTaskInput(event.target.value)} value={TaskInput}/>
+            <input type="text" placeholder="Due Date" className='due-date-bar' value={DueDateInput} onChange={(event) => SetDueDateInput(event.target.value)}/>
+            <textarea className="description-bar" type="text" placeholder="Description" rows="5" cols="20" value={DescInput} onChange={(event) => setDesc(event.target.value)}></textarea>     
+            <div className="priority">
+                <label htmlFor="priority-select"></label>
+                <select name="priority-level" id="pet-select" value={Priority} onChange={(event) => SetPriority(event.target.value)}>
+                <option value="">Choose a priority level</option>
+                <option value={1}>Level 1</option>
+                <option value={2}>Level 2</option>
+                <option value={3}>Level 3</option>
+                </select>
+            </div>
 
-export function element(TaskList) {
-    TaskList.map((task) => (
-        <li key={task.id}>
-            <input type="checkbox" className="task-check-box" name="task-check-box" onClick={markComplete(task)}/>
-            <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label><strong className="date">{task.DueDate}</strong> <button className="detail-btn"> Detail </button> <button className="delete-btn">Delete</button>
-        </li>
-    ))
-}
+            <button onClick={handleAdd} id="add-btn" className="add-btn">Add</button>
+        </div>
+    );
+} 
