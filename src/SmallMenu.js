@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import SearchBar from './SearchBar'
 import Sorting from './Sorting'
 
-export default function SmallMenu() { 
+export default function SmallMenu({taskList, setTaskList}) { 
     const [dispaly, setDispaly] = useState(false);
     function handleClick() {
         if (dispaly === false) {
@@ -19,7 +19,7 @@ export default function SmallMenu() {
             <div>
                 <SearchBar />
                 <form action="https://info340c-sp24.github.io/project-tommy-s-team/group.html" method="get" className="CateForm"><button style={{ fontSize: '14px' }} id="Categorization"><i className='fas fa-plus'></i> Categorization</button></form>
-                <Sorting />
+                <Sorting taskList = {taskList} setTaskList={setTaskList}/>
             </div>
             )}
         </div>

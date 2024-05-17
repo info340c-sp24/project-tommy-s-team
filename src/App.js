@@ -6,23 +6,23 @@ import Todo from './Todo'
 import SmallMenu from './SmallMenu';
 
 export default function App() {
-  const [TaskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState([]);
   return (
       <div>
           <header>
             <h1>Todo List</h1>
             <nav><a href="#" className="username-link"><img src={require('./img/user.jpg')} alt="an user icon" /></a></nav>
           </header>
-          <SmallMenu />
+          <SmallMenu taskList = {taskList} setTaskList={setTaskList}/>
           <div className="flex-container">
             <SearchBar />
             <form action="https://info340c-sp24.github.io/project-tommy-s-team/group.html" method="get" className="CateForm"><button style={{ fontSize: '14px' }} id="Categorization"><i className='fas fa-plus'></i> Categorization</button></form>
             <div className="menu"> 
               <div className="sort-box">
-                <Sorting taskList = {TaskList} setTaskList={setTaskList}/>
+                <Sorting taskList = {taskList} setTaskList={setTaskList}/>
               </div>
             </div>
-            <Todo taskList = {TaskList} setTaskList={setTaskList}/>
+            <Todo taskList = {taskList} setTaskList={setTaskList}/>
           </div>
           <footer>
             <p>&copy; Info 340 Project <img src={require('./img/todo.gif')} alt="a gif showing a todo list" /></p>

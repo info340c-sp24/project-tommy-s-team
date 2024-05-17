@@ -56,7 +56,7 @@ export default function Todo({taskList, setTaskList}) {
     //     );
     // } 
     
-    console.log(taskList);
+    // console.log(taskList);
 
     return (
         <div className="todo-list">
