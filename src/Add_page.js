@@ -6,6 +6,7 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     const [DescInput, setDesc] = useState('');
     const [DueDateInput, SetDueDateInput] = useState('');
     const [Priority, SetPriority] = useState(0);
+    const [Group, SetGroup] = useState('');
     
     //function handleAdd() {
     //    const newTask = taskList.concat({TaskID: taskList.length + 1, TaskName: TaskInput, DueDate: DueDateInput, Priority: Priority, DescText: DescInput, completed: false});
@@ -23,6 +24,7 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
             DueDate: DueDateInput,
             Priority: Priority,
             DescText: DescInput,
+            Group: Group,
             completed: false
         };
         const newTaskList = taskList.concat(newTask);

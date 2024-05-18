@@ -25,6 +25,7 @@ export default function App() {
               </div>
             </div>
             <Todo taskList = {taskList} setTaskList={setTaskList}/>
+            <Grouping taskList = {taskList} />
           </div>
           <footer>
             <p>&copy; Info 340 Project <img src={require('./img/todo.gif')} alt="a gif showing a todo list" /></p>
