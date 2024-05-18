@@ -1,5 +1,5 @@
 'use strict';
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 
 export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     const [TaskInput, setTaskInput] = useState('');
@@ -7,14 +7,32 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     const [DueDateInput, SetDueDateInput] = useState('');
     const [Priority, SetPriority] = useState(0);
     
+    //function handleAdd() {
+    //    const newTask = taskList.concat({TaskID: taskList.length + 1, TaskName: TaskInput, DueDate: DueDateInput, Priority: Priority, DescText: DescInput, completed: false});
+    //    setTaskList(GetIncompletedTask(newTask));
+    //    setTaskInput('');
+    //   setDesc('');
+     //   SetDueDateInput('');
+    //    SetPriority('');
+    //}
+
     function handleAdd() {
-        const newTask = taskList.concat({TaskID: taskList.length + 1, TaskName: TaskInput, DueDate: DueDateInput, Priority: Priority, DescText: DescInput, completed: false});
-        setTaskList(GetIncompletedTask(newTask));
+        const newTask = {
+            TaskID: taskList.length + 1,
+            TaskName: TaskInput,
+            DueDate: DueDateInput,
+            Priority: Priority,
+            DescText: DescInput,
+            completed: false
+        };
+        const newTaskList = taskList.concat(newTask);
+        setTaskList(GetIncompletedTask(newTaskList));
         setTaskInput('');
         setDesc('');
         SetDueDateInput('');
-        SetPriority('');
+        SetPriority(0);
     }
+    
     return (
         <div className="add-box">
             <input type="text" placeholder="Task name" className='name-bar' onChange={(event) => setTaskInput(event.target.value)} value={TaskInput}/>

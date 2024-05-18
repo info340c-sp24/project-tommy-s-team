@@ -3,6 +3,8 @@ import React, {useState} from 'react'
 import SearchBar from './SearchBar'
 import Sorting from './Sorting'
 import Todo from './Todo'
+import Grouping from './Grouping';
+import Taskmanager from './Taskmanager';
 import SmallMenu from './SmallMenu';
 
 export default function App() {
