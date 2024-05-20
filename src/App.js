@@ -4,7 +4,6 @@ import SearchBar from './SearchBar'
 import Sorting from './Sorting'
 import Todo from './Todo'
 import Grouping from './Grouping';
-import Taskmanager from './Taskmanager';
 import SmallMenu from './SmallMenu';
 
 export default function App() {
@@ -25,7 +24,7 @@ export default function App() {
               </div>
             </div>
             <Todo taskList = {taskList} setTaskList={setTaskList}/>
-            <Grouping taskList = {taskList} />
+            
           </div>
           <footer>
             <p>&copy; Info 340 Project <img src={require('./img/todo.gif')} alt="a gif showing a todo list" /></p>

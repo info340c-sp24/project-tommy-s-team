@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import './index.css';
 
-const Grouping = ({ taskList }) => {
+const Grouping = ({ taskList, setTaskList, onClose }) => {
     const [groupName, setGroupName] = useState('');
     const [groups, setGroups] = useState([]);
 
     const handleGroupButtonClick = () => {
-        const selectedTasks = taskList.filter(task => task.checked).map(task => task.TaskName);
+        const selectedTasks = taskList.filter(task => task.checked).map(task => task.TaskID);
 
         if (selectedTasks.length > 0) {
             const name = groupName.trim() || 'Unnamed Group';
+
+            const updatedTasks = taskList.map(task => {
+                if (selectedTasks.includes(task.TaskID)) {
+                    return { ...task, group: name, checked: false }; 
+                }
+                return task;
+            });
+
+            setTaskList(updatedTasks);
             setGroups([...groups, { name, tasks: selectedTasks }]);
             setGroupName('');
         } else {
@@ -21,7 +30,7 @@ const Grouping = ({ taskList }) => {
         const updatedTasks = taskList.map(task =>
             task.TaskID === taskId ? { ...task, checked: !task.checked } : task
         );
-        
+        setTaskList(updatedTasks);
     };
 
     return (
@@ -34,6 +43,7 @@ const Grouping = ({ taskList }) => {
                     <tr>
                         <th>Check</th>
                         <th>Task Name</th>
+                        <th>Due Date</th>
                         <th>Task Description</th>
                     </tr>
                 </thead>
@@ -48,6 +58,7 @@ const Grouping = ({ taskList }) => {
                                 />
                             </td>
                             <td>{task.TaskName}</td>
+                            <td>{task.DueDate}</td>
                             <td>{task.DescText}</td>
                         </tr>
                     ))}
@@ -72,9 +83,6 @@ const Grouping = ({ taskList }) => {
                     </div>
                 ))}
             </div>
-            <nav>
-                <a href="https://info340c-sp24.github.io/project-tommy-s-team/index.html" className="b">BACK</a>
-            </nav>
         </div>
     );
 };
