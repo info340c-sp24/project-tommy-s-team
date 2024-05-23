@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './index.css';
 
-const Grouping = ({ taskList, setTaskList, onClose }) => {
+const Grouping = ({ taskList, setTaskList, onClose, groupSet, setGroupSet }) => {
     const [groupName, setGroupName] = useState('');
     const [groups, setGroups] = useState([]);
 
@@ -17,7 +17,8 @@ const Grouping = ({ taskList, setTaskList, onClose }) => {
                 }
                 return task;
             });
-
+            const tempSet = new Set([name])
+            setGroupSet(new Set([...groupSet, ...tempSet]) )
             setTaskList(updatedTasks);
             setGroups([...groups, { name, tasks: selectedTasks }]);
             setGroupName('');
@@ -25,6 +26,7 @@ const Grouping = ({ taskList, setTaskList, onClose }) => {
             alert('Please select at least one task.');
         }
     };
+    
 
     const handleCheckboxChange = (taskId) => {
         const updatedTasks = taskList.map(task =>

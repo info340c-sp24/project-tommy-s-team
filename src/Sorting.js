@@ -2,7 +2,7 @@
 import React, {useState} from 'react'
 import Sorting_Dropdown from './Sorting_Dropdown'
 import _ from 'lodash';
-export default function Sorting({taskList, setTaskList}) {
+export default function Sorting({taskList, setTaskList, taskListGroup, setTaskListGroup, groupSet, onlyShowGroup, isOnlyShowGroup, setIsOnlyShowGroup}) {
         const [isSortByDate, setIsSortByDate] = useState(false)
         const [isSortByPriority, setIsSortByPriority] = useState(false)
         const [isSortByName, setIsSortByName] = useState(false)
@@ -35,7 +35,7 @@ export default function Sorting({taskList, setTaskList}) {
                 <input type="checkbox" className="sort-check-box" id="nameSort" name="sort-check-box" checked={isSortByName} onChange={handleNameChange}/>
                 <label htmlFor="sort-check-box" className="task-detail">Name</label> <br></br>
 
-                <Sorting_Dropdown />
+                <Sorting_Dropdown taskList = {taskList} setTaskList={setTaskList} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} groupSet={groupSet} onlyShowGroup={onlyShowGroup} isOnlyShowGroup={isOnlyShowGroup} setIsOnlyShowGroup={setIsOnlyShowGroup}/>
         </div>
-        )
+        );
 }
