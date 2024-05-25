@@ -254,11 +254,6 @@ footer img {
         padding-bottom: .5rem;
     }
 
-    .menu .dropdown {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
     #sort-check-box{ 
         text-align: left;

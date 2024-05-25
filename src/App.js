@@ -18,7 +18,7 @@ export default function App() {
       return task.group === groupName;
     });
   }
-  console.log(taskListGroup);
+  console.log(taskList);
   return (
       <div>
           <header>

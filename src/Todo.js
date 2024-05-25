@@ -23,6 +23,7 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             onClick={() => {
                                 task.completed = true;
                                 setTaskList(GetIncompletedTask(taskList));
+                                setTaskListGroup(GetIncompletedTask(taskListGroup));
                             }}
                         />
                         <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
@@ -40,6 +41,7 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             onClick={() => {
                                 task.completed = true;
                                 setTaskListGroup(GetIncompletedTask(taskListGroup));
+                                setTaskList(GetIncompletedTask(taskList));
                             }}
                         />
                         <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
