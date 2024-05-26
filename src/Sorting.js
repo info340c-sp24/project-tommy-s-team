@@ -35,7 +35,7 @@ export default function Sorting({taskList, setTaskList, taskListGroup, setTaskLi
                 <input type="checkbox" className="sort-check-box" id="nameSort" name="sort-check-box" checked={isSortByName} onChange={handleNameChange}/>
                 <label htmlFor="sort-check-box" className="task-detail">Name</label> <br></br>
 
-                <Sorting_Dropdown taskList = {taskList} setTaskList={setTaskList} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} groupSet={groupSet} onlyShowGroup={onlyShowGroup} isOnlyShowGroup={isOnlyShowGroup} setIsOnlyShowGroup={setIsOnlyShowGroup}/>
+                <Sorting_Dropdown taskList = {taskList} setTaskList={setTaskList} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} groupSet={groupSet} onlyShowGroup={onlyShowGroup} isOnlyShowGroup={isOnlyShowGroup} setIsOnlyShowGroup={setIsOnlyShowGroup} />
         </div>
         );
 }

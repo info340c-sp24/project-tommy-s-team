@@ -147,7 +147,9 @@ header h1 {
 }
 
 .SearchBarForm {
-    display: none;
+    /* display: block; */
+    margin: auto;
+    margin-bottom: 1rem;
 }
 
 #Categorization {
@@ -221,12 +223,12 @@ footer img {
     .delete-btn {
         display: block;
     }
-
+/* 
     .SearchBarForm {
         display: block;
         margin: auto;
         margin-bottom: 1rem;
-    }
+    } */
 
     .menu {
         display: block;

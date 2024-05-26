@@ -25,7 +25,7 @@ export default function App() {
             <h1>Todo List</h1>
             <nav><a href="#" className="username-link"><img src={require('./img/user.jpg')} alt="an user icon" /></a></nav>
           </header>
-          <SmallMenu taskList = {taskList} setTaskList={setTaskList}/>
+          <SmallMenu taskList = {taskList} setTaskList={setTaskList} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} groupSet={groupSet} onlyShowGroup={onlyShowGroup} isOnlyShowGroup={isOnlyShowGroup} setIsOnlyShowGroup={setIsOnlyShowGroup}/>
           <div className="flex-container">
             <SearchBar />
             {/* <form action="https://info340c-sp24.github.io/project-tommy-s-team/group.html" method="get" className="CateForm"><button style={{ fontSize: '14px' }} id="Categorization"><i className='fas fa-plus'></i> Categorization</button></form> */}
