@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import AddTask_btn from './AddTask_btn';
 import AddGroup_btn from './AddGroup_btn';
 
-export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isOnlyShowGroup, taskListGroup, setTaskListGroup }) {
+export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isOnlyShowGroup, taskListGroup, setTaskListGroup, isOnlyShowSearch, taskListSearch, setTaskListSearch}) {
     function GetIncompletedTask(taskList) {
         return taskList.filter((task) => {
-            return task.completed == false;
+            return task.completed == false && task.display == true;
         });
     }
 
@@ -14,7 +14,7 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
         <div className="todo-list">
             <p className="title"><b>Upcoming Tasks</b></p>
             <ol id="todo">
-                {!isOnlyShowGroup && taskList.map((task) => (
+                {!isOnlyShowGroup && !isOnlyShowSearch && taskList.map((task) => (
                     <li key={task.TaskID}>
                         <input
                             type="checkbox"
@@ -29,7 +29,6 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                         <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
                         <strong className="date">{task.DueDate}</strong>
                         <button className="detail-btn">Detail</button>
-                        {/* <button className="delete-btn">Delete</button> */}
                     </li>
                 ))}
                 {isOnlyShowGroup && taskListGroup.map((task) => (
@@ -41,6 +40,24 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             onClick={() => {
                                 task.completed = true;
                                 setTaskListGroup(GetIncompletedTask(taskListGroup));
+                                setTaskList(GetIncompletedTask(taskList));
+                            }}
+                        />
+                        <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
+                        <strong className="date">{task.DueDate}</strong>
+                        <button className="detail-btn">Detail</button>
+                    </li>
+                ))}
+
+                {isOnlyShowSearch && taskListSearch.map((task) => (
+                    <li key={task.TaskID}>
+                        <input
+                            type="checkbox"
+                            className={`task-check-box ${task.TaskID}`}
+                            name="task-check-box"
+                            onClick={() => {
+                                task.completed = true;
+                                taskListSearch(GetIncompletedTask(taskListGroup));
                                 setTaskList(GetIncompletedTask(taskList));
                             }}
                         />
