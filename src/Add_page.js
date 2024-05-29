@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     const [TaskInput, setTaskInput] = useState('');
     const [DescInput, setDesc] = useState('');
-    const [DueDateInput, SetDueDateInput] = useState('');
+    const [DueDateInput, SetDueDateInput] = useState();
     const [Priority, SetPriority] = useState(0);
     const [Group, SetGroup] = useState('');
 
@@ -29,8 +29,8 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     
     return (
         <div className="add-box">
-            <input type="text" placeholder="Task name" className='name-bar' onChange={(event) => setTaskInput(event.target.value)} value={TaskInput}/>
-            <input type="text" placeholder="Due Date" className='due-date-bar' value={DueDateInput} onChange={(event) => SetDueDateInput(event.target.value)}/>
+            <input type="text" placeholder="Task name" className='name-bar' onChange={(event) => setTaskInput(event.target.value)} value={TaskInput} />
+            <input type="date" placeholder="Due Date" className='due-date-bar' value={DueDateInput} onChange={(event) => SetDueDateInput(event.target.value)} />
             <textarea className="description-bar" type="text" placeholder="Description" rows="5" cols="20" value={DescInput} onChange={(event) => setDesc(event.target.value)}></textarea>     
             <div className="priority">
                 <label htmlFor="priority-select"></label>

@@ -33,7 +33,7 @@ export default function Sorting_Dropdown({taskList, setTaskList, taskListGroup, 
 
     return (
         <div>
-            <div className="dropdown">
+            <div className="group-dropdown">
                 <button className="dropbtn" onClick={clickCurrentGroupDropdown}>Groups</button>
                 {showCurrentGroup === true && (
                     <div>
@@ -52,7 +52,7 @@ export default function Sorting_Dropdown({taskList, setTaskList, taskListGroup, 
                     </div>
                 )}
             </div>
-            <div className="dropdown">
+            <div className="delete-group-dropdown">
                 <button className="dropbtn" onClick={clickGroupDeleteDropdown}>Delete Group</button>
                 {showGroupDelete === true && (
                     <div>

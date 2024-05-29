@@ -119,16 +119,6 @@ header h1 {
     padding-bottom: 1rem;
 }
 
-/* .dropdown-menu {
-    display: none;
-}
-
-.dropdown:hover {
-    .dropdown-menu {
-        display: block;
-    }
-} */
-
 
 
 /* Todo List */
@@ -214,6 +204,9 @@ footer img {
     padding: .2rem;
 }
 
+.due-date-bar {
+    inline-size: 10.1rem;
+}
 
 @media (min-width: 768px) {
     .detail-btn {
