@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import AddTask_btn from './AddTask_btn';
 import AddGroup_btn from './AddGroup_btn';
+import Detail_btn from './Detail_btn';
 
 export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isOnlyShowGroup, taskListGroup, setTaskListGroup, isOnlyShowSearch, taskListSearch, setTaskListSearch}) {
     function GetIncompletedTask(taskList) {
@@ -23,12 +24,12 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             onClick={() => {
                                 task.completed = true;
                                 setTaskList(GetIncompletedTask(taskList));
-                                setTaskListGroup(GetIncompletedTask(taskListGroup));
+                                // setTaskListGroup(GetIncompletedTask(taskListGroup));
                             }}
                         />
                         <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
                         <strong className="date">{task.DueDate}</strong>
-                        <button className="detail-btn">Detail</button>
+                        <Detail_btn taskList={taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task}/>
                     </li>
                 ))}
                 {isOnlyShowGroup && taskListGroup.map((task) => (
@@ -45,7 +46,7 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                         />
                         <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
                         <strong className="date">{task.DueDate}</strong>
-                        <button className="detail-btn">Detail</button>
+                        <Detail_btn taskList={taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task}/>
                     </li>
                 ))}
 
@@ -57,13 +58,13 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             name="task-check-box"
                             onClick={() => {
                                 task.completed = true;
-                                taskListSearch(GetIncompletedTask(taskListGroup));
+                                setTaskListSearch(GetIncompletedTask(taskListSearch));
                                 setTaskList(GetIncompletedTask(taskList));
                             }}
                         />
                         <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
                         <strong className="date">{task.DueDate}</strong>
-                        <button className="detail-btn">Detail</button>
+                        <Detail_btn taskList={taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task}/>
                     </li>
                 ))}
             </ol>
