@@ -2,11 +2,28 @@ import React, {useState} from 'react';
 
 export default function Detail({taskList, setTaskList, isOnlyShowGroup, taskListGroup, setTaskListGroup, isOnlyShowSearch, taskListSearch, setTaskListSearch, task}) {
     const [newTaskList, setNewTaskList] = useState(taskList);
+    const [newTaskListGroup, setNewTaskListGroup] = useState(taskListGroup);
+    const [newTaskListSearch, setNewTaskListSearch] = useState(taskListSearch);
     function HandleNameChange(event) {
         newTaskList.map((element) => {
             if (element == task) {
                 element.TaskName = event.target.value;
                 setNewTaskList(taskList);
+                return;
+            }
+        })
+        newTaskListGroup.map((element) => {
+            if (element == task) {
+                element.TaskName = event.target.value;
+                setNewTaskListGroup(taskList);
+                return;
+            }
+        })
+
+        newTaskListSearch.map((element) => {
+            if (element == task) {
+                element.TaskName = event.target.value;
+                setNewTaskListSearch(taskList);
                 return;
             }
         })
@@ -20,6 +37,22 @@ export default function Detail({taskList, setTaskList, isOnlyShowGroup, taskList
                 return;
             }
         })
+
+        newTaskListGroup.map((element) => {
+            if (element == task) {
+                element.DueDate = event.target.value;
+                setNewTaskListGroup(taskList);
+                return;
+            }
+        })
+
+        newTaskListSearch.map((element) => {
+            if (element == task) {
+                element.DueDate = event.target.value;
+                setNewTaskListSearch(taskList);
+                return;
+            }
+        })
     }
 
     function HandleDescChange(event) {
@@ -27,6 +60,22 @@ export default function Detail({taskList, setTaskList, isOnlyShowGroup, taskList
             if (element == task) {
                 element.DescText = event.target.value;
                 setNewTaskList(taskList);
+                return;
+            }
+        })
+
+        newTaskListGroup.map((element) => {
+            if (element == task) {
+                element.DescText = event.target.value;
+                setNewTaskListGroup(taskList);
+                return;
+            }
+        })
+
+        newTaskListSearch.map((element) => {
+            if (element == task) {
+                element.DescText = event.target.value;
+                setNewTaskListSearch(taskList);
                 return;
             }
         })
@@ -40,20 +89,36 @@ export default function Detail({taskList, setTaskList, isOnlyShowGroup, taskList
                 return;
             }
         })
+
+        newTaskListGroup.map((element) => {
+            if (element == task) {
+                element.Priority = event.target.value;
+                setNewTaskListGroup(taskList);
+                return;
+            }
+        })
+
+        newTaskListSearch.map((element) => {
+            if (element == task) {
+                element.Priority = event.target.value;
+                setNewTaskListSearch(taskList);
+                return;
+            }
+        })
     }
 
     function HandleChange() {
         if (!isOnlyShowGroup && !isOnlyShowSearch) {
             setTaskList(newTaskList);
             setTaskListGroup(newTaskList);
-        } else if (isOnlyShowGroup) {
-            setTaskList(newTaskList);
-            setTaskListGroup(newTaskList);
-        } else if (isOnlyShowSearch) {
-            setTaskList(newTaskList);
             setTaskListSearch(newTaskList);
-        }
-        
+        } else if (isOnlyShowGroup) {
+            setTaskListGroup(newTaskListGroup);
+            setTaskList(newTaskList);
+        } else if (isOnlyShowSearch) {
+            setTaskListSearch(newTaskListSearch);
+            setTaskList(newTaskList);
+        }   
     }
 
     console.log(taskList);

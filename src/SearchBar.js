@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 
 export default function SearchBar({taskList, setTaskList, onlyShowSearch, isOnlyShowSearch, setIsOnlyShowSearch, setTaskListSearch}) {
     const [searchContent, setSearchContent] = useState("");
-    const searchedTaskList = taskList;
     function search() {
         if (searchContent === "") {
             setIsOnlyShowSearch(false);
@@ -11,6 +10,7 @@ export default function SearchBar({taskList, setTaskList, onlyShowSearch, isOnly
             setIsOnlyShowSearch(true);
             setTaskListSearch(onlyShowSearch(searchContent));
         }
+        setSearchContent("");
     }
     console.log(taskList);
     return (
