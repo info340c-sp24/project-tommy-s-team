@@ -6,14 +6,14 @@ const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState(''); // Declare confirmPassword here
     const navigate = useNavigate(); 
 
     const handleToggle = () => {
         setIsLogin(!isLogin);
         setUsername('');
         setPassword('');
-        setConfirmPassword('');
+        setConfirmPassword(''); // Reset confirmPassword when toggling
     };
 
     const handleLoginSubmit = async (e) => {

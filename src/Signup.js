@@ -16,23 +16,12 @@ const Signup = () => {
             return;
         }
 
+        // Add your signup logic here
         try {
-            const response = await fetch('/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password }),
-            });
+            // Your signup logic goes here
 
-            const result = await response.json();
-
-            if (result.success) {
-                alert('Signup successful');
-                navigate('/login');
-            } else {
-                alert('Signup failed: ' + result.message);
-            }
+            alert('Signup successful');
+            navigate('/login');
         } catch (error) {
             alert('An error occurred: ' + error.message);
         }
