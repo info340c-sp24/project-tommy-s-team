@@ -10,7 +10,7 @@
     background-image: url('../src/img/loginbg.png');
 }
 
-.Login_box {
+.login-box {
     text-align: center;
     background-color: #ffffff;
     padding: 40px;
@@ -26,17 +26,20 @@
     margin-bottom: 20px; 
 }
 
-.login {
+.login, .signup {
     display: flex;
     flex-direction: column;
 }
 
 .username-input,
-.password-input {
+.password-input,
+.confirm-password-input {
     margin-bottom: 20px;
 }
 
-.username-input label, password-input label {
+.username-input label,
+.password-input label,
+.confirm-password-input label {
     display: block;
     margin-bottom: 10px;
     font-size: 16px;
@@ -44,7 +47,8 @@
 }
 
 .username-input input[type="text"],
-.password-input input[type="password"] {
+.password-input input[type="password"],
+.confirm-password-input input[type="password"] {
     width: calc(100% - 20px); 
     padding: 10px 10px;
     border: 2px solid #ced4da;
@@ -75,6 +79,23 @@ button.login-button:hover,
 button.login-button:focus {
     background-color: #b5b8e7;
     transform: translateY(-2px); 
+}
+
+p {
+    margin-top: 10px;
+}
+
+button.toggle-button {
+    background: none;
+    color: #5C67F2;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 16px;
+}
+
+button.toggle-button:hover {
+    color: #b5b8e7;
 }
 
 /* main page */
