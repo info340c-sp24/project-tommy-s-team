@@ -14,7 +14,7 @@ const AddGroupBtn = ({ taskList, setTaskList, groupSet, setGroupSet}) => {
     };
 
     return (
-        <div>
+        <div className='AddGroup-btn'>
             <button onClick={handleButtonClick} className="add-group-btn">
                 Add Group
             </button>

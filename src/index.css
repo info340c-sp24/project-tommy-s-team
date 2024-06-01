@@ -181,18 +181,13 @@ header h1 {
     padding-left: 1rem;
 }
 
-.detail-btn {
-    margin-left: 1rem;
+#detail-btn {
     margin-right: .5rem;
-    display: none;
-}
-
-.delete-btn {
-    display: none;
 }
 
 .date {
     padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 /* footer */
@@ -208,11 +203,11 @@ footer img {
 }
 
 /* Add Task */
-.add-box {
+.add-box, .detail-box {
     text-align: center;
-    background-color: #ffffff;
+    background-color: #E9F6FB;
     padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
     width: 11rem; 
     border: 1px solid #ddd; 
     margin-left: auto;
@@ -229,15 +224,28 @@ footer img {
 .Main-Body {
     background-image: url('../src/img//background5.jpg')
 }
+
+.sort-box{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 11rem; 
+    background-color: lightgray;
+}
+
+/* Group */
+.grouping-box p {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.grouping-box th {
+    font-size: smaller;
+}
+
 @media (min-width: 768px) {
-    
-    .detail-btn {
-        display: block;
-    }
-    
-    .delete-btn {
-        display: block;
-    }
 /* 
     .SearchBarForm {
         display: block;
@@ -253,16 +261,6 @@ footer img {
         display: block;
         margin: auto;
         margin-bottom: 1rem;
-    }
-
-    .sort-box{
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 1rem;
-        border: 1px solid #ddd; 
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 11rem; 
-        background-color: lightgray;
     }
     
     .menu input {

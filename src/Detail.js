@@ -121,7 +121,6 @@ export default function Detail({taskList, setTaskList, isOnlyShowGroup, taskList
         }   
     }
 
-    console.log(taskList);
     return (
         <div className="detail-box">
             <input type="text" placeholder={task.TaskName} className='name-bar' onChange={HandleNameChange}/>

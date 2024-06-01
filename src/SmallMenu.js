@@ -16,7 +16,7 @@ export default function SmallMenu({taskList, setTaskList, taskListGroup, setTask
         <div className="menu-small">
             <button type="button" className="menu-btn" onClick={handleClick}>Menu</button>
             {dispaly === true && (
-            <div>
+            <div className="sort-box">
                 <Sorting taskList = {taskList} setTaskList={setTaskList} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} groupSet={groupSet} onlyShowGroup={onlyShowGroup} isOnlyShowGroup={isOnlyShowGroup} setIsOnlyShowGroup={setIsOnlyShowGroup} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch}/>
             </div>
             )}

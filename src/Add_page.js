@@ -9,22 +9,26 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     const [Group, SetGroup] = useState('');
 
     function handleAdd() {
-        const newTask = {
-            TaskID: taskList.length + 1,
-            TaskName: TaskInput,
-            DueDate: DueDateInput,
-            Priority: Priority,
-            DescText: DescInput,
-            Group: Group,
-            completed: false,
-            display: true
-        };
-        const newTaskList = taskList.concat(newTask);
-        setTaskList(GetIncompletedTask(newTaskList));
-        setTaskInput('');
-        setDesc('');
-        SetDueDateInput('');
-        SetPriority(0);
+        if (TaskInput.length > 0) {
+            const newTask = {
+                TaskID: taskList.length + 1,
+                TaskName: TaskInput,
+                DueDate: DueDateInput,
+                Priority: Priority,
+                DescText: DescInput,
+                Group: Group,
+                completed: false,
+                display: true
+            };
+            const newTaskList = taskList.concat(newTask);
+            setTaskList(GetIncompletedTask(newTaskList));
+            setTaskInput('');
+            setDesc('');
+            SetDueDateInput('');
+            SetPriority(0);
+        } else {
+            alert('Please Enter a Task Name');
+        }
     }
     
     return (

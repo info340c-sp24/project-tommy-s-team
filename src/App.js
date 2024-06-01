@@ -32,7 +32,7 @@ export default function App() {
         <div>
             <header>
               <h1>Todo List</h1>
-              <nav><a href="#" className="username-link"><img src={require('./img/user.jpg')} alt="an user icon" /></a></nav>
+              {/* <nav><a href="#" className="username-link"><img src={require('./img/user.jpg')} alt="an user icon" /></a></nav> */}
             </header>
             <SmallMenu taskList = {taskList} setTaskList={setTaskList} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} groupSet={groupSet} onlyShowGroup={onlyShowGroup} isOnlyShowGroup={isOnlyShowGroup} setIsOnlyShowGroup={setIsOnlyShowGroup} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch}/>
             <div className="flex-container">
