@@ -1,12 +1,25 @@
 'use strict';
-import React from 'react'
+import React, {useState} from 'react';
 
-export default function SearchBar() {
+export default function SearchBar({taskList, setTaskList, onlyShowSearch, isOnlyShowSearch, setIsOnlyShowSearch, setTaskListSearch}) {
+    const [searchContent, setSearchContent] = useState("");
+    function search() {
+        if (searchContent === "") {
+            setIsOnlyShowSearch(false);
+        } else {
+            setIsOnlyShowSearch(true);
+            setTaskListSearch(onlyShowSearch(searchContent));
+        }
+        setSearchContent("");
+    }
+    console.log(taskList);
     return (
-        <form action="http://127.0.0.1:8080/" method="get" className="SearchBarForm">
+        <div className="SearchBarForm">
             <label htmlFor="search-text"></label>
-            <input type="text"/>
-            <button id="search-btn" className="search-btn">Search</button>
-        </form>
+            <input type="text" value={searchContent} onChange={(event) => setSearchContent(event.target.value)}/>
+            <button id="search-btn" className="search-btn" onClick={search}>Search</button>
+        </div>
+            
+
     )
 }

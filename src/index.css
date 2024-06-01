@@ -140,16 +140,6 @@ header h1 {
     padding-bottom: 1rem;
 }
 
-/* .dropdown-menu {
-    display: none;
-}
-
-.dropdown:hover {
-    .dropdown-menu {
-        display: block;
-    }
-} */
-
 
 
 /* Todo List */
@@ -168,7 +158,9 @@ header h1 {
 }
 
 .SearchBarForm {
-    display: none;
+    /* display: block; */
+    margin: auto;
+    margin-bottom: 1rem;
 }
 
 #Categorization {
@@ -233,6 +225,9 @@ footer img {
     padding: .2rem;
 }
 
+.due-date-bar {
+    inline-size: 10.1rem;
+}
 
 @media (min-width: 768px) {
     .detail-btn {
@@ -242,12 +237,12 @@ footer img {
     .delete-btn {
         display: block;
     }
-
+/* 
     .SearchBarForm {
         display: block;
         margin: auto;
         margin-bottom: 1rem;
-    }
+    } */
 
     .menu {
         display: block;
@@ -275,11 +270,6 @@ footer img {
         padding-bottom: .5rem;
     }
 
-    .menu .dropdown {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
     #sort-check-box{ 
         text-align: left;
