@@ -143,24 +143,22 @@ header h1 {
 
 
 /* Todo List */
-.todo-list, .todo-list-over-due{
+.todo-list {
     text-align: left;
-    background-color: azure;
+    background-color: #E9F6FB;
     margin-left: auto;
     margin-right: auto;
     flex-basis: 75%;
-}
-
-.todo-list-over-due{
-    color:red;
-    margin-bottom: 2rem;
-
+    border: 1px solid #ddd; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .SearchBarForm {
     /* display: block; */
     margin: auto;
     margin-bottom: 1rem;
+    border: 1px solid #ddd; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #Categorization {
@@ -228,8 +226,11 @@ footer img {
 .due-date-bar {
     inline-size: 10.1rem;
 }
-
+.Main-Body {
+    background-image: url('../src/img//background5.jpg')
+}
 @media (min-width: 768px) {
+    
     .detail-btn {
         display: block;
     }
