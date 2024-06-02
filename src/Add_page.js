@@ -1,5 +1,7 @@
 'use strict';
 import React, {useState} from 'react';
+import {db} from './firebase';
+import { getDatabase, ref, set as firebaseSet } from 'firebase/database';
 
 export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     const [TaskInput, setTaskInput] = useState('');
@@ -21,6 +23,7 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
                 display: true
             };
             const newTaskList = taskList.concat(newTask);
+            Push();
             setTaskList(GetIncompletedTask(newTaskList));
             setTaskInput('');
             setDesc('');
@@ -29,6 +32,12 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
         } else {
             alert('Please Enter a Task Name');
         }
+    }
+
+    const Push = () => {
+        db.ref("user").set({
+            name: TaskInput
+        }).catch(alert);
     }
     
     return (

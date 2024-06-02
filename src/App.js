@@ -5,8 +5,6 @@ import Todo from './Todo'
 import Grouping from './Grouping';
 import SmallMenu from './SmallMenu';
 
-
-
 export default function App() {
   const [taskList, setTaskList] = useState([]);
   const [taskListGroup, setTaskListGroup] = useState([]);
@@ -26,7 +24,6 @@ export default function App() {
     });
   }
   
-  console.log(taskList);
   return (
     <div className='Main-Body'>
         <div>
