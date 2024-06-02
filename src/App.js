@@ -4,6 +4,8 @@ import Sorting from './Sorting'
 import Todo from './Todo'
 import Grouping from './Grouping';
 import SmallMenu from './SmallMenu';
+import Signup from './Signup';
+import Login from './Login';
 
 export default function App() {
   const [taskList, setTaskList] = useState([]);
