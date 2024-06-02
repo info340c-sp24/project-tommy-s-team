@@ -16,9 +16,9 @@ const Signup = () => {
             return;
         }
 
-        // Add your signup logic here
+        
         try {
-            // Your signup logic goes here
+            
 
             alert('Signup successful');
             navigate('/login');
