@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import './index.css';
+import { auth } from './firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 
 const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
+
+    const initialValues = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
