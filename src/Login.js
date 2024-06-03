@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import './index.css';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
-    const [username, setUsername] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState(''); // Declare confirmPassword here
+    const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate(); 
+    const auth = getAuth(); // Get the auth instance
 
     const handleToggle = () => {
         setIsLogin(!isLogin);
-        setUsername('');
+        setFullName('');
+        setEmail('');
         setPassword('');
-        setConfirmPassword(''); // Reset confirmPassword when toggling
+        setConfirmPassword('');
     };
 
     const handleLoginSubmit = async (e) => {
@@ -33,22 +37,12 @@ const Login = () => {
         }
 
         try {
-            const response = await fetch('/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password }),
-            });
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            console.log('User created:', user);
 
-            const result = await response.json();
-
-            if (result.success) {
-                alert('Signup successful');
-                setIsLogin(true);
-            } else {
-                alert('Signup failed: ' + result.message);
-            }
+            alert('Signup successful');
+            setIsLogin(true); // Switch to login view after successful signup
         } catch (error) {
             alert('An error occurred: ' + error.message);
         }
@@ -60,14 +54,14 @@ const Login = () => {
                 <img src={require('./img/user2.jpeg')} alt="User icon" className="icon" />
                 {isLogin ? (
                     <form onSubmit={handleLoginSubmit} className="login">
-                        <div className="username-input">
-                            <label htmlFor="username">Username:</label>
+                        <div className="email-input">
+                            <label htmlFor="email">Email:</label>
                             <input
-                                type="text"
-                                id="username"
-                                name="username"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                         </div>
@@ -89,14 +83,25 @@ const Login = () => {
                     </form>
                 ) : (
                     <form onSubmit={handleSignupSubmit} className="signup">
-                        <div className="username-input">
-                            <label htmlFor="username">Username:</label>
+                        <div className="full-name-input">
+                            <label htmlFor="fullName">Full Name:</label>
                             <input
                                 type="text"
-                                id="username"
-                                name="username"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                id="fullName"
+                                name="fullName"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="email-input">
+                            <label htmlFor="email">Email:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                         </div>
@@ -122,7 +127,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <button type="submit" className="login-button">Sign Up</button>
+                        <button type="submit" className="signup-button">Sign Up</button>
                         <p>
                             Already have an account? <button type="button" onClick={handleToggle} className="toggle-button">Login</button>
                         </p>
