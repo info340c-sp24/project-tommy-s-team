@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import './index.css';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+//import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -10,7 +11,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate(); 
-    const auth = getAuth(); // Get the auth instance
+    const auth = getAuth();
+    //const db = getFirestore();
 
     const handleToggle = () => {
         setIsLogin(!isLogin);
@@ -26,8 +28,6 @@ const Login = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             console.log('User logged in:', user);
-
-            // Navigate to the todo page after successful login
             navigate('/todo');
         } catch (error) {
             alert('Login failed: ' + error.message);
@@ -36,7 +36,6 @@ const Login = () => {
 
     const handleSignupSubmit = async (e) => {
         e.preventDefault();
-
         if (password !== confirmPassword) {
             alert('Passwords do not match');
             return;
@@ -47,15 +46,21 @@ const Login = () => {
             const user = userCredential.user;
             console.log('User created:', user);
 
+            /*await setDoc(doc(db, "users", user.uid), {
+                fullName: fullName,
+                email: email,
+                createdAt: new Date()
+            });*/
+
             alert('Signup successful');
-            setIsLogin(true); // Switch to login view after successful signup
+            setIsLogin(true);
         } catch (error) {
             alert('Signup failed: ' + error.message);
         }
     };
 
     return (
-        <div className="login-body">
+        <div className={isLogin ? "login-body" : "signup-body"}>
             <div className="login-box">
                 <img src={require('./img/user2.jpeg')} alt="User icon" className="icon" />
                 {isLogin ? (

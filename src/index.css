@@ -1,27 +1,30 @@
-/* login page */
-.login-body {
+/* login and signup page */
+.login-body, .signup-body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #e9ecef;
+    background-color: #f0f2f5;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     background-image: url('../src/img/loginbg.png');
+    background-size: cover;
+    background-position: center;
 }
 
-.login-box {
+.login-box, .signup-box {
     text-align: center;
     background-color: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 350px; 
-    border: 1px solid #ddd; 
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 400px; 
+    border: 1px solid #ddd;
+    opacity: 0.95;
 }
 
 .icon {
-    width: 100px; 
+    width: 80px; 
     height: auto;
     margin-bottom: 20px; 
 }
@@ -31,40 +34,28 @@
     flex-direction: column;
 }
 
-.username-input,
-.password-input,
-.confirm-password-input {
-    margin-bottom: 20px;
-}
-
-.username-input label,
-.password-input label,
-.confirm-password-input label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #495057; 
-}
-
-.username-input input[type="text"],
-.password-input input[type="password"],
-.confirm-password-input input[type="password"] {
-    width: calc(100% - 20px); 
-    padding: 10px 10px;
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
     border: 2px solid #ced4da;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 16px; 
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
 }
 
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus {
-    border-color: #111116; 
+    border-color: #5C67F2;
     outline: none;
 }
 
-button.login-button {
-    padding: 12px 10px;
+button.login-button, button.signup-button {
+    padding: 12px 15px;
     background-color: #5C67F2;
     color: white;
     border: none;
@@ -72,17 +63,20 @@ button.login-button {
     cursor: pointer;
     font-size: 18px; 
     transition: background-color 0.3s, transform 0.1s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); 
 }
 
 button.login-button:hover,
-button.login-button:focus {
-    background-color: #b5b8e7;
+button.signup-button:hover,
+button.login-button:focus,
+button.signup-button:focus {
+    background-color: #4b52c7;
     transform: translateY(-2px); 
 }
 
 p {
     margin-top: 10px;
+    font-size: 14px;
 }
 
 button.toggle-button {
@@ -95,7 +89,7 @@ button.toggle-button {
 }
 
 button.toggle-button:hover {
-    color: #b5b8e7;
+    color: #4b52c7;
 }
 
 /* main page */
