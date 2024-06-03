@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import './index.css';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -22,10 +22,16 @@ const Login = () => {
 
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        // Add authentication logic here
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            console.log('User logged in:', user);
 
-        // For demonstration, we'll just navigate to the todo page
-        navigate('/todo');
+            // Navigate to the todo page after successful login
+            navigate('/todo');
+        } catch (error) {
+            alert('Login failed: ' + error.message);
+        }
     };
 
     const handleSignupSubmit = async (e) => {
@@ -44,7 +50,7 @@ const Login = () => {
             alert('Signup successful');
             setIsLogin(true); // Switch to login view after successful signup
         } catch (error) {
-            alert('An error occurred: ' + error.message);
+            alert('Signup failed: ' + error.message);
         }
     };
 
