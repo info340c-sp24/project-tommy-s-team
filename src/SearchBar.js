@@ -12,7 +12,6 @@ export default function SearchBar({taskList, setTaskList, onlyShowSearch, isOnly
         }
         setSearchContent("");
     }
-    console.log(taskList);
     return (
         <div className="SearchBarForm">
             <label htmlFor="search-text"></label>

@@ -10,7 +10,7 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     const [Group, SetGroup] = useState('');
     
     function handleAdd() {
-        if (TaskInput.length > 0) {
+        if (TaskInput.length > 0 && DueDateInput != null) {
             const newTask = {
                 TaskID: Date.now().toString(36),
                 TaskName: TaskInput,
@@ -29,8 +29,10 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
             setDesc('');
             SetDueDateInput('');
             SetPriority(0);
-        } else {
+        } else if (TaskInput.length <= 0) {
             alert('Please Enter a Task Name');
+        } else {
+            alert('Please Enter a Date');
         }
     }
 

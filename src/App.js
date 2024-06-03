@@ -7,7 +7,7 @@ import SmallMenu from './SmallMenu';
 import Signup from './Signup';
 import Login from './Login';
 
-export default function App() {
+export default function App({uid}) {
   const [taskList, setTaskList] = useState([]);
   const [taskListGroup, setTaskListGroup] = useState([]);
   const [taskListSearch, setTaskListSearch] = useState([]);

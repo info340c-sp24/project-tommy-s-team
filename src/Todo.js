@@ -19,9 +19,6 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
             const AllTaskObjs = snapshot.val();
             if (AllTaskObjs != null) {
                 const keyArray = Object.keys(AllTaskObjs);
-                for (let key in AllTaskObjs) {
-                    console.log(key, AllTaskObjs[key]['TaskID']);
-                }
                 const TaskArray = keyArray.map((key) => {
                     const transform = AllTaskObjs[key];
                     transform.firebaseKey = key;
@@ -63,7 +60,7 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             name="task-check-box"
                             onClick={() => {
                                 MarkComplete(task);
-                                task.completed = 1;
+                                task.completed = true;
                                 setTaskList(GetIncompletedTask(taskList));
                                 setTaskListGroup(GetIncompletedTask(taskListGroup));
                             }}
@@ -80,7 +77,8 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             className={`task-check-box ${task.TaskID}`}
                             name="task-check-box"
                             onClick={() => {
-                                task.completed = 1;
+                                MarkComplete(task);
+                                task.completed = true;
                                 setTaskListGroup(GetIncompletedTask(taskListGroup));
                                 setTaskList(GetIncompletedTask(taskList));
                             }}
@@ -98,7 +96,8 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             className={`task-check-box ${task.TaskID}`}
                             name="task-check-box"
                             onClick={() => {
-                                task.completed = 1;
+                                MarkComplete(task);
+                                task.completed = true;
                                 setTaskListSearch(GetIncompletedTask(taskListSearch));
                                 setTaskList(GetIncompletedTask(taskList));
                             }}

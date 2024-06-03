@@ -13,7 +13,7 @@ export default function Detail_btn({taskList, setTaskList, isOnlyShowGroup, task
     return (
         <div>
             <button onClick={handleClick} style={{ fontSize: '14px'}} id="detail-btn" ><i className='fas fa-plus'></i> Detail</button>
-            {popup && <div> <Detail taskList = {taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task} /> </div>}
+            {popup && <div> <Detail taskList = {taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task} setPopup={setPopup} /> </div>}
         </div>
     );
 }

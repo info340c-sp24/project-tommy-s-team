@@ -148,7 +148,6 @@ header h1 {
 }
 
 .SearchBarForm {
-    /* display: block; */
     margin: auto;
     margin-bottom: 1rem;
     border: 1px solid #ddd; 
@@ -240,13 +239,6 @@ footer img {
 }
 
 @media (min-width: 768px) {
-/* 
-    .SearchBarForm {
-        display: block;
-        margin: auto;
-        margin-bottom: 1rem;
-    } */
-
     .menu {
         display: block;
     }

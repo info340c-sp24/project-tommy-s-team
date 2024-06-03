@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import Login from './Login';
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged  } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBhkqRFiDMPTednH0HYrhaWEK769a4dqXE",
@@ -21,13 +21,23 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+var uid = null;
+onAuthStateChanged(auth, (firebaseUser) => {
+  if(firebaseUser){
+      console.log('logged in', firebaseUser.uid);
+      uid = firebaseUser.uid;
+  }
+  else { //firebaseUser is undefined: is not logged in
+      console.log('logged out');
+  }
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
     <Routes>
       <Route path="/" element={<Login />} /> {/* Use Route instead of RouteElement */}
-      <Route path="/todo" element={<App />} /> {/* Use Route instead of RouteElement */}
+      <Route path="/todo" element={<App uid = {uid}/>} /> {/* Use Route instead of RouteElement */}
     </Routes>
   </Router>
 );
