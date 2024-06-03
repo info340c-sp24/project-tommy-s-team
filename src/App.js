@@ -18,7 +18,7 @@ export default function App({uid}) {
 
   function onlyShowGroup(groupName) {
     return taskList.filter((task) => {
-      return task.group === groupName;
+      return task.Group === groupName;
     });
   }
 
@@ -43,7 +43,7 @@ export default function App({uid}) {
                   <Sorting taskList = {taskList} setTaskList={setTaskList} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} groupSet={groupSet} onlyShowGroup={onlyShowGroup} isOnlyShowGroup={isOnlyShowGroup} setIsOnlyShowGroup={setIsOnlyShowGroup} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch}/>
                 </div>
               </div>
-              <Todo taskList = {taskList} setTaskList={setTaskList} groupSet={groupSet} setGroupSet={setGroupSet} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch}/>
+              <Todo taskList = {taskList} setTaskList={setTaskList} groupSet={groupSet} setGroupSet={setGroupSet} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} uid={uid}/>
               
             </div>
             <footer>

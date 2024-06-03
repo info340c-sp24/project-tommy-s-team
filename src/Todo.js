@@ -5,16 +5,16 @@ import AddGroup_btn from './AddGroup_btn';
 import Detail_btn from './Detail_btn';
 import { getDatabase, ref, push, onValue, set, remove } from 'firebase/database';
 
-export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isOnlyShowGroup, taskListGroup, setTaskListGroup, isOnlyShowSearch, taskListSearch, setTaskListSearch}) {
+export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isOnlyShowGroup, taskListGroup, setTaskListGroup, isOnlyShowSearch, taskListSearch, setTaskListSearch, uid}) {
     function GetIncompletedTask(taskList) {
         return taskList.filter((task) => {
             return task.completed == false && task.display == true;
         });
     }
-
+    
     useEffect(() => {
         const db = getDatabase();
-        const taskRef = ref(db, "Tasks");
+        const taskRef = ref(db, uid+"/Tasks");
         onValue(taskRef, (snapshot) => {
             const AllTaskObjs = snapshot.val();
             if (AllTaskObjs != null) {
@@ -26,20 +26,27 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                 })
                 const newTaskList = taskList.concat(TaskArray);
                 setTaskList(GetIncompletedTask(newTaskList));
+                let tempSet = new Set();
+                TaskArray.map((task) => {
+                    if (task.Group != "") {
+                        tempSet.add(task.Group);
+                    }
+                })
+                setGroupSet(tempSet);
             }  
         })
     }, [])
-
+    console.log(taskList)
     function MarkComplete(task) {
         const db = getDatabase();
-        const taskRef = ref(db, "Tasks");
+        const taskRef = ref(db, uid+"/Tasks");
         onValue(taskRef, (snapshot) => {
             const AllTaskObjs = snapshot.val();
             if (AllTaskObjs != null) {
                 for (let key in AllTaskObjs) {
                     const value = AllTaskObjs[key];
                     if (task.TaskID == value['TaskID']) {
-                        const completedTaskRef = ref(db, "Tasks/"+key);
+                        const completedTaskRef = ref(db, uid+"/Tasks/"+key);
                         remove(completedTaskRef);
                     }
                 }
@@ -67,7 +74,7 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                         />
                         <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
                         <strong className="date">{task.DueDate}</strong>
-                        <Detail_btn taskList={taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task}/>
+                        <Detail_btn taskList={taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task} uid={uid}/>
                     </li>
                 ))}
                 {isOnlyShowGroup && taskListGroup.map((task) => (
@@ -85,7 +92,7 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                         />
                         <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
                         <strong className="date">{task.DueDate}</strong>
-                        <Detail_btn taskList={taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task}/>
+                        <Detail_btn taskList={taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task} uid={uid}/>
                     </li>
                 ))}
 
@@ -104,12 +111,12 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                         />
                         <label htmlFor="taskInput" className="task-detail">{task.TaskName}</label>
                         <strong className="date">{task.DueDate}</strong>
-                        <Detail_btn taskList={taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task}/>
+                        <Detail_btn taskList={taskList} setTaskList={setTaskList} isOnlyShowGroup={isOnlyShowGroup} taskListGroup={taskListGroup} setTaskListGroup={setTaskListGroup} isOnlyShowSearch={isOnlyShowSearch} taskListSearch={taskListSearch} setTaskListSearch={setTaskListSearch} task={task} uid={uid}/>
                     </li>
                 ))}
             </ol>
-            <AddTask_btn taskList={taskList} setTaskList={setTaskList} GetIncompletedTask={GetIncompletedTask} />
-            <AddGroup_btn taskList={taskList} setTaskList={setTaskList} groupSet={groupSet} setGroupSet={setGroupSet}/>
+            <AddTask_btn taskList={taskList} setTaskList={setTaskList} GetIncompletedTask={GetIncompletedTask} uid={uid} />
+            <AddGroup_btn taskList={taskList} setTaskList={setTaskList} groupSet={groupSet} setGroupSet={setGroupSet} uid={uid}/>
         </div>
     );
 }

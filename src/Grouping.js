@@ -1,9 +1,30 @@
 import React, { useState } from 'react';
+import { getDatabase, ref, push, onValue, set, remove, update } from 'firebase/database';
 import './index.css';
 
-const Grouping = ({ taskList, setTaskList, onClose, groupSet, setGroupSet }) => {
+const Grouping = ({ taskList, setTaskList, onClose, groupSet, setGroupSet, uid }) => {
     const [groupName, setGroupName] = useState('');
     const [groups, setGroups] = useState([]);
+
+    function HandleDatabaseChange(task) {
+        const db = getDatabase();
+        const taskRef = ref(db, uid+"/Tasks");
+        onValue(taskRef, (snapshot) => {
+            const AllTaskObjs = snapshot.val();
+            
+            if (AllTaskObjs != null) {
+                for (let key in AllTaskObjs) {
+                    const value = AllTaskObjs[key];
+                    
+                    if (task.TaskID == value['TaskID']) {
+                        const TaskToChange = ref(db, uid+"/Tasks/"+key);
+                        var TaskChangeTo = task;
+                        update(TaskToChange, TaskChangeTo); 
+                    }
+                }
+            } 
+        })
+    }
 
     const handleGroupButtonClick = () => {
         const selectedTasks = taskList.filter(task => task.checked).map(task => task.TaskID);
@@ -13,7 +34,9 @@ const Grouping = ({ taskList, setTaskList, onClose, groupSet, setGroupSet }) => 
 
             const updatedTasks = taskList.map(task => {
                 if (selectedTasks.includes(task.TaskID)) {
-                    return { ...task, group: name, checked: false }; 
+                    const newTask = { ...task, Group: name, checked: false };
+                    HandleDatabaseChange(newTask);
+                    return newTask;
                 }
                 return task;
             });

@@ -1,21 +1,23 @@
 import React, {useState} from 'react';
 import { getDatabase, ref, push, onValue, set, remove, update } from 'firebase/database';
 
-export default function Detail({taskList, setTaskList, isOnlyShowGroup, taskListGroup, setTaskListGroup, isOnlyShowSearch, taskListSearch, setTaskListSearch, task, setPopup}) {
+export default function Detail({taskList, setTaskList, isOnlyShowGroup, taskListGroup, setTaskListGroup, isOnlyShowSearch, taskListSearch, setTaskListSearch, task, setPopup, uid}) {
     const [newTaskList, setNewTaskList] = useState(taskList);
     const [newTaskListGroup, setNewTaskListGroup] = useState(taskListGroup);
     const [newTaskListSearch, setNewTaskListSearch] = useState(taskListSearch);
 
     function HandleDatabaseChange(taskList) {
         const db = getDatabase();
-        const taskRef = ref(db, "Tasks");
+        const taskRef = ref(db, uid+"/Tasks");
         onValue(taskRef, (snapshot) => {
             const AllTaskObjs = snapshot.val();
+            
             if (AllTaskObjs != null) {
                 for (let key in AllTaskObjs) {
                     const value = AllTaskObjs[key];
+                    
                     if (task.TaskID == value['TaskID']) {
-                        const TaskToChange = ref(db, "Tasks/"+key);
+                        const TaskToChange = ref(db, uid+"/Tasks/"+key);
                         var TaskChangeTo = {};
                         taskList.map((task) => {
                             if (task.firebaseKey == key) {
@@ -23,8 +25,7 @@ export default function Detail({taskList, setTaskList, isOnlyShowGroup, taskList
                             }
                             
                         });
-                        update(TaskToChange, TaskChangeTo);
-                        
+                        update(TaskToChange, TaskChangeTo); 
                     }
                 }
             } 

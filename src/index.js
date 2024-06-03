@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
 import './index.css';
 import App from './App';
@@ -21,23 +22,29 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-var uid = null;
+const root = createRoot(document.getElementById('root'));
 onAuthStateChanged(auth, (firebaseUser) => {
   if(firebaseUser){
       console.log('logged in', firebaseUser.uid);
-      uid = firebaseUser.uid;
+      root.render(
+        <Router>
+          <Routes>
+            <Route path="/" element={<Login />} /> {/* Use Route instead of RouteElement */}
+            <Route path="/todo" element={<App uid = {firebaseUser.uid}/>} /> {/* Use Route instead of RouteElement */}
+          </Routes>
+        </Router>
+      );
   }
-  else { //firebaseUser is undefined: is not logged in
+  else {
       console.log('logged out');
   }
 });
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <Router>
-    <Routes>
-      <Route path="/" element={<Login />} /> {/* Use Route instead of RouteElement */}
-      <Route path="/todo" element={<App uid = {uid}/>} /> {/* Use Route instead of RouteElement */}
-    </Routes>
-  </Router>
-);
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <Router>
+//     <Routes>
+//       <Route path="/" element={<Login />} /> {/* Use Route instead of RouteElement */}
+//       <Route path="/todo" element={<App uid = {uid}/>} /> {/* Use Route instead of RouteElement */}
+//     </Routes>
+//   </Router>
+// );

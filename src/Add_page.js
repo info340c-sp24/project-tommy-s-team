@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import { getDatabase, ref, push, onValue } from 'firebase/database';
 
-export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
+export default function Add_page({taskList, setTaskList, GetIncompletedTask, uid}) {
     const [TaskInput, setTaskInput] = useState('');
     const [DescInput, setDesc] = useState('');
     const [DueDateInput, SetDueDateInput] = useState();
@@ -22,7 +22,7 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
                 display: true
             };
             const db = getDatabase();
-            const taskRef = ref(db, "Tasks");
+            const taskRef = ref(db, uid+"/Tasks");
             push(taskRef, newTask)
 
             setTaskInput('');

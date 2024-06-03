@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Grouping from './Grouping'; 
 import './index.css';
 
-const AddGroupBtn = ({ taskList, setTaskList, groupSet, setGroupSet}) => {
+const AddGroupBtn = ({ taskList, setTaskList, groupSet, setGroupSet, uid}) => {
     const [showGrouping, setShowGrouping] = useState(false);
 
     const handleButtonClick = () => {
@@ -22,7 +22,7 @@ const AddGroupBtn = ({ taskList, setTaskList, groupSet, setGroupSet}) => {
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={handleClose}>&times;</span>
-                        <Grouping taskList={taskList} setTaskList={setTaskList} groupSet={groupSet} setGroupSet={setGroupSet}/>
+                        <Grouping taskList={taskList} setTaskList={setTaskList} groupSet={groupSet} setGroupSet={setGroupSet} uid={uid}/>
                     </div>
                 </div>
             )}
