@@ -22,7 +22,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const root = createRoot(document.getElementById('root'));
-var uid = null;
 onAuthStateChanged(auth, (firebaseUser) => {
   if(firebaseUser){
       console.log('logged in', firebaseUser.uid);
