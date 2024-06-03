@@ -1,7 +1,6 @@
 'use strict';
-import React, {useState} from 'react';
-import {db} from './firebase';
-import { getDatabase, ref, set as firebaseSet } from 'firebase/database';
+import React, {useEffect, useState} from 'react';
+import { getDatabase, ref, push, onValue } from 'firebase/database';
 
 export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     const [TaskInput, setTaskInput] = useState('');
@@ -9,11 +8,11 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
     const [DueDateInput, SetDueDateInput] = useState();
     const [Priority, SetPriority] = useState(0);
     const [Group, SetGroup] = useState('');
-
+    
     function handleAdd() {
         if (TaskInput.length > 0) {
             const newTask = {
-                TaskID: taskList.length + 1,
+                TaskID: Date.now().toString(36),
                 TaskName: TaskInput,
                 DueDate: DueDateInput,
                 Priority: Priority,
@@ -22,9 +21,10 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
                 completed: false,
                 display: true
             };
-            const newTaskList = taskList.concat(newTask);
-            Push();
-            setTaskList(GetIncompletedTask(newTaskList));
+            const db = getDatabase();
+            const taskRef = ref(db, "Tasks");
+            push(taskRef, newTask)
+
             setTaskInput('');
             setDesc('');
             SetDueDateInput('');
@@ -34,12 +34,6 @@ export default function Add_page({taskList, setTaskList, GetIncompletedTask}) {
         }
     }
 
-    const Push = () => {
-        db.ref("user").set({
-            name: TaskInput
-        }).catch(alert);
-    }
-    
     return (
         <div className="add-box">
             <input type="text" placeholder="Task name" className='name-bar' onChange={(event) => setTaskInput(event.target.value)} value={TaskInput} />

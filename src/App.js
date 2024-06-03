@@ -14,6 +14,8 @@ export default function App() {
   const [groupSet, setGroupSet] = useState(new Set([]));
   const [isOnlyShowGroup, setIsOnlyShowGroup] = useState(false);
   const [isOnlyShowSearch, setIsOnlyShowSearch] = useState(false);
+
+
   function onlyShowGroup(groupName) {
     return taskList.filter((task) => {
       return task.group === groupName;

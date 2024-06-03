@@ -6,7 +6,21 @@ import { Routes, Route as RouteElement } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Login from './Login';
+import { initializeApp } from "firebase/app";
 
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBhkqRFiDMPTednH0HYrhaWEK769a4dqXE",
+    authDomain: "infoproject-c6e63.firebaseapp.com",
+    databaseURL: "https://infoproject-c6e63-default-rtdb.firebaseio.com",
+    projectId: "infoproject-c6e63",
+    storageBucket: "infoproject-c6e63.appspot.com",
+    messagingSenderId: "426287835863",
+    appId: "1:426287835863:web:56e9a79a24a8d162321e92"
+  };
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

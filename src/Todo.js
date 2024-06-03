@@ -1,8 +1,9 @@
 'use strict';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddTask_btn from './AddTask_btn';
 import AddGroup_btn from './AddGroup_btn';
 import Detail_btn from './Detail_btn';
+import { getDatabase, ref, push, onValue, set, remove } from 'firebase/database';
 
 export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isOnlyShowGroup, taskListGroup, setTaskListGroup, isOnlyShowSearch, taskListSearch, setTaskListSearch}) {
     function GetIncompletedTask(taskList) {
@@ -10,6 +11,45 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
             return task.completed == false && task.display == true;
         });
     }
+
+    useEffect(() => {
+        const db = getDatabase();
+        const taskRef = ref(db, "Tasks");
+        onValue(taskRef, (snapshot) => {
+            const AllTaskObjs = snapshot.val();
+            if (AllTaskObjs != null) {
+                const keyArray = Object.keys(AllTaskObjs);
+                for (let key in AllTaskObjs) {
+                    console.log(key, AllTaskObjs[key]['TaskID']);
+                }
+                const TaskArray = keyArray.map((key) => {
+                    const transform = AllTaskObjs[key];
+                    transform.firebaseKey = key;
+                    return transform;
+                })
+                const newTaskList = taskList.concat(TaskArray);
+                setTaskList(GetIncompletedTask(newTaskList));
+            }  
+        })
+    }, [])
+
+    function MarkComplete(task) {
+        const db = getDatabase();
+        const taskRef = ref(db, "Tasks");
+        onValue(taskRef, (snapshot) => {
+            const AllTaskObjs = snapshot.val();
+            if (AllTaskObjs != null) {
+                for (let key in AllTaskObjs) {
+                    const value = AllTaskObjs[key];
+                    if (task.TaskID == value['TaskID']) {
+                        const completedTaskRef = ref(db, "Tasks/"+key);
+                        remove(completedTaskRef);
+                    }
+                }
+            } 
+        })
+    }
+    
 
     return (
         <div className="todo-list">
@@ -22,7 +62,8 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             className={`task-check-box ${task.TaskID}`}
                             name="task-check-box"
                             onClick={() => {
-                                task.completed = true;
+                                MarkComplete(task);
+                                task.completed = 1;
                                 setTaskList(GetIncompletedTask(taskList));
                                 setTaskListGroup(GetIncompletedTask(taskListGroup));
                             }}
@@ -39,7 +80,7 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             className={`task-check-box ${task.TaskID}`}
                             name="task-check-box"
                             onClick={() => {
-                                task.completed = true;
+                                task.completed = 1;
                                 setTaskListGroup(GetIncompletedTask(taskListGroup));
                                 setTaskList(GetIncompletedTask(taskList));
                             }}
@@ -57,7 +98,7 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
                             className={`task-check-box ${task.TaskID}`}
                             name="task-check-box"
                             onClick={() => {
-                                task.completed = true;
+                                task.completed = 1;
                                 setTaskListSearch(GetIncompletedTask(taskListSearch));
                                 setTaskList(GetIncompletedTask(taskList));
                             }}
