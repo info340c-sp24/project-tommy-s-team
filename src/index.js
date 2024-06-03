@@ -23,20 +23,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const root = createRoot(document.getElementById('root'));
+var uid = null;
 onAuthStateChanged(auth, (firebaseUser) => {
   if(firebaseUser){
       console.log('logged in', firebaseUser.uid);
       root.render(
         <Router>
           <Routes>
-            <Route path="/" element={<Login />} /> {/* Use Route instead of RouteElement */}
-            <Route path="/todo" element={<App uid = {firebaseUser.uid}/>} /> {/* Use Route instead of RouteElement */}
+            <Route path="/" element={<Login />} />
+            <Route path="/todo" element={<App uid = {firebaseUser.uid}/>} /> 
           </Routes>
         </Router>
       );
   }
   else {
       console.log('logged out');
+      root.render(
+        <Router>
+          <Routes>
+            <Route path="/" element={<Login />} />
+          </Routes>
+        </Router>
+      );
   }
 });
 // const root = ReactDOM.createRoot(document.getElementById('root'));

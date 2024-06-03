@@ -6,6 +6,9 @@ import Grouping from './Grouping';
 import SmallMenu from './SmallMenu';
 import Signup from './Signup';
 import Login from './Login';
+import { initializeApp } from "firebase/app";
+import { getAuth, onAuthStateChanged  } from "firebase/auth";
+
 
 export default function App({uid}) {
   const [taskList, setTaskList] = useState([]);
@@ -14,7 +17,6 @@ export default function App({uid}) {
   const [groupSet, setGroupSet] = useState(new Set([]));
   const [isOnlyShowGroup, setIsOnlyShowGroup] = useState(false);
   const [isOnlyShowSearch, setIsOnlyShowSearch] = useState(false);
-
 
   function onlyShowGroup(groupName) {
     return taskList.filter((task) => {

@@ -36,7 +36,6 @@ export default function Todo({ taskList, setTaskList, groupSet, setGroupSet, isO
             }  
         })
     }, [])
-    console.log(taskList)
     function MarkComplete(task) {
         const db = getDatabase();
         const taskRef = ref(db, uid+"/Tasks");
